@@ -18,7 +18,7 @@ var server = restify.createServer();
 var patients = save('patients')
 
 //server created
-server.listen(PORT,URL, function() {
+server.listen(PORT, function() {
   //server is listening at 127.0.0.1 at port 3009
   console.log("Server created successfully")
   console.log('%s listening at %s at port %d', SERVERNAME, SERVERURL, PORT);
