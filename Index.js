@@ -1,6 +1,6 @@
 //variables
-var PORT = 3009
-var SERVERURL = "127.0.0.1"
+var PORT = process.env.PORT
+var SERVERURL = " https://microservice-project.herokuapp.com/"
 var SERVERNAME = "Patient-API"
 var getRequestsCount = 0
 var postRequestCount = 0
@@ -226,7 +226,7 @@ function changePatientDetailsById(req,res,next){
 
     // Send a 200 OK response
     res.send(200,changedData)
-    
+
     next();
   })
 }
