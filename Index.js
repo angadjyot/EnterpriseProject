@@ -1,4 +1,3 @@
-
 //variables
 var PORT = 3009
 var SERVERURL = "127.0.0.1"
@@ -234,7 +233,8 @@ function changePatientDetailsById(req,res,next){
 
 //callback function mapped to DELETE by id request
 function deletePatientRecordById(req,res,next){
-  //Delete patient record using the persistence engine
+
+//Delete patient record using the persistence engine
 patients.delete(req.params.id, function(err, patients){
       
   console.log("DELETING records at id "+req.params.id);
