@@ -205,7 +205,6 @@ function changePatientDetailsById(req,res,next){
     //If there are any errors, pass them to next in the correct format
     return next(new errors.InvalidArgumentError('Doctor name is required'))
   }
-  
   var changePatientData = {
     _id: req.params.id,
     firstname: req.body.firstname, 
@@ -227,6 +226,7 @@ function changePatientDetailsById(req,res,next){
 
     // Send a 200 OK response
     res.send(200,changedData)
+    
     next();
   })
 }
