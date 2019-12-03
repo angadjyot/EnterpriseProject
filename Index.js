@@ -1,6 +1,6 @@
 //variables
-var PORT = process.env.PORT
-var SERVERURL = " https://microservice-project.herokuapp.com/"
+var PORT = 3009
+var SERVERURL = "127.0.0.1"
 var SERVERNAME = "Patient-API"
 var getRequestsCount = 0
 var postRequestCount = 0
@@ -16,9 +16,10 @@ var save = require('save')
 var server = restify.createServer();
 
 var patients = save('patients')
+var records = save('records')
 
 //server created
-server.listen(PORT, function() {
+server.listen(PORT,SERVERURL, function() {
   //server is listening at 127.0.0.1 at port 3009
   console.log("Server created successfully")
   console.log('%s listening at %s at port %d', SERVERNAME, SERVERURL, PORT);
@@ -45,6 +46,12 @@ server.put('/patients/:id',changePatientDetailsById);
 
 //DELETE by id  request
 server.del('/patients/:id',deletePatientRecordById);
+
+server.post('/patients/:id/records',addPatientRecords);
+
+server.get('/patients/:id/records',getPatientRecords);
+
+
 
 
 
@@ -242,5 +249,35 @@ patients.delete(req.params.id, function(err, patients){
       res.send(200, patients);
       console.log("*********************************************")
       next();
+  })
+}
+
+function addPatientRecords(req,res,next){
+
+  
+  if (req.body.medication === undefined ) {
+    //If there are any errors, pass them to next in the correct format
+    return next(new errors.InvalidArgumentError('Medication is required'))
+  }
+  if (req.body.doctor === undefined ) {
+    //If there are any errors, pass them to next in the correct format
+    return next(new errors.InvalidArgumentError('Doctor name is required'))
+  }
+  var changePatientData = {
+    patientid: req.params.id,
+    medication: req.body.medication,
+    doctor: req.body.doctor
+  }
+
+  records.create(changePatientData,function(error,data){
+    
+    res.send(201,data)
+  })
+
+}
+
+function getPatientRecords(req,res,next){
+  records.find({},function(error,record){
+    res.send(200,record)
   })
 }
