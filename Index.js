@@ -1,6 +1,6 @@
 //variables
-var PORT = 3009
-var SERVERURL = "127.0.0.1"
+// var PORT = 3009
+// var SERVERURL = "127.0.0.1"
 var SERVERNAME = "Patient-API"
 var getRequestsCount = 0
 var postRequestCount = 0
@@ -17,9 +17,16 @@ var server = restify.createServer();
 
 var patients = save('patients')
 var records = save('records')
+var DEFAULT_PORT = 5000;
+
+var port = process.env.PORT;
+if(typeof port === "undefined"){
+  console.warn('No Process.env.PORT var, using default port: '+ DEFAULT_PORT)
+  port = DEFAULT_PORT.toString();
+}
 
 //server created
-server.listen(PORT,SERVERURL, function() {
+server.listen(port, function() {
   //server is listening at 127.0.0.1 at port 3009
   console.log("Server created successfully")
   console.log('%s listening at %s at port %d', SERVERNAME, SERVERURL, PORT);
