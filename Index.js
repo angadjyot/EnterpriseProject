@@ -29,7 +29,7 @@ if(typeof port === "undefined"){
 server.listen(port, function() {
   //server is listening at 127.0.0.1 at port 3009
   console.log("Server created successfully")
-  console.log('%s listening at %s at port %d', SERVERNAME, SERVERURL, PORT);
+  // console.log('%s listening at %s at port %d', SERVERNAME, SERVERURL, port);
   console.log("*********************************************")
 });
 
