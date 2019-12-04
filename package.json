@@ -4,12 +4,15 @@
   "description": "",
   "main": "Index.js",
   "scripts": {
-    "start": "node Index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "mocha": "^6.2.2",
     "restify": "^8.4.0",
     "save": "^2.4.0"
   }
